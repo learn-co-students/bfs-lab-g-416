@@ -25,7 +25,9 @@ function findAdjacent(nodeName, vertices, edges) {
       element.forEach(name => {
           if (name != nodeName) {
             let node = vertices.find(n => n.name === name)
-            adjacent.push(node);
+            if (node.distance == null){
+                adjacent.push(node);
+            }
           }
       })
   });
