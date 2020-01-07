@@ -1,17 +1,24 @@
-/*
-    rootNode = vertices[0]
-    queue = []
-    addVertexToQueue(rootNode)
-        // queue = [rootNode]
-    while(!queue.length == 0) {
-        let firstNode = queue.shift()
-    adjacentVertices = findAdjacent(firstNode)
-        for vertex in adjacentVertices {
-            markDistanceAndPredecessor(vertex)
-            addToQueue(vertex)
-        }
-    }
-*/
+function bfs(startingNode, vertices, edges){ //should return an array of nodes in the order they were visited
+  //start at rootNode
+  //call findAdjacent on rootNode
+  //iterate over array returned by findAdjacent and add (in order) to 'discovered' array
+  //then set rootNode to next in vertices array
+    //repeat the process
+      //stop when no more in queue (start queue as an array == vertices)
+      startingNode.distance = 0
+      let discovered = [startingNode]
+      let discoverOrder = [startingNode]
+      while(discovered.length != 0){
+        let currentNode = discovered.shift()
+        let adjacentNodes = findAdjacent(currentNode.name, vertices, edges)
+        discoverOrder = discoverOrder.concat(adjacentNodes);
+        markDistanceAndPredecessor(currentNode, adjacentNodes)
+        discovered = discovered.concat(adjacentNodes)
+      }
+      return discoverOrder
+}
+
+
 function findAdjacent(nodeName, vertices, edges) {
   let adjacent = [];
   let filteredEdges = edges.filter(edge => {
@@ -34,14 +41,9 @@ function findAdjacent(nodeName, vertices, edges) {
   return adjacent;
 }
 
-function markDistanceAndPredecessor(vertex) {
-
-}
-
-function addToQueue(vertex) {
-
-}
-
-function bfs(rootNode, vertices, edges){
-
+function markDistanceAndPredecessor(predecessor, adjacentNodes) {
+  adjacentNodes.map(function(node){
+    node.distance = predecessor.distance + 1;
+    node.predecessor = predecessor;
+   })
 }
