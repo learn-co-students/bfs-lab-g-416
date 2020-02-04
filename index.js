@@ -39,13 +39,9 @@ function findAdjacent(node, vertices, edges) {
 }
 
 function markDistanceAndPredecessor(rootNode, adjacentNodes) {
-  // for (let node of adjacentNodes) {
-  //   node.distance = 1
-  //   node.predecessor = rootNode
-  // }
-  // return adjacentNodes
-  adjacentNodes.map(function(node){
-    node.distance = predecessor.distance + 1;
-    node.predecessor = predecessor;
-  })
+  for (let node of adjacentNodes) {
+    node.distance = 1
+    node.predecessor = rootNode
+  }
+  return adjacentNodes
 }
