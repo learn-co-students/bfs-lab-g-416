@@ -1,6 +1,6 @@
-var chai = require('chai');
-var sinon = require('sinon');
-
+// var chai = require('chai');
+// var sinon = require('sinon');
+//
 let edges;
 let vertices;
 beforeEach(function() {
