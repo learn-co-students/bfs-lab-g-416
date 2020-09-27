@@ -34,7 +34,7 @@ const bfs = (rootNode, vertices, edges) => {
   rootNode.distance = 0;
   let discovered = [rootNode];
   let discoverOrder = [rootNode];
-  while (discovered.length != 0) {
+  while (discovered.length !== 0) {
     let currentNode = discovered.shift();
     let adjacentNodes = findAdjacent(currentNode.name, vertices, edges);
     discoverOrder = discoverOrder.concat(adjacentNodes);
