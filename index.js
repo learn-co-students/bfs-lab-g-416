@@ -23,18 +23,32 @@
 //     return final;
 // }
 
-function findAdjacent(nodeName, vertices, edges) {
-    return edges.filter(function(edge){
+// function findAdjacent(nodeName, vertices, edges) {
+//     return edges.filter(function(edge){
+//         return edge.includes(nodeName)
+//     }).map(function(edge) {
+//         return edge.filter(function(node){
+//             return (node !=nodeName)
+//         })[0]
+//     }).map(function(name){
+//         return findNode(name, vertices)
+//         }).filter(function(node){
+//             return node.distance == null
+//         })
+// }
+
+function findAdjacent(nodeName, vertices, edges){
+    return edges.filter(edge => {
         return edge.includes(nodeName)
-    }).map(function(edge) {
-        return edge.filter(function(node){
-            return (node !=nodeName)
+    }).map(edge => {
+        return edge.filter(node => {
+            return node != nodeName
         })[0]
-    }).map(function(name){
+    }).map(name => {
         return findNode(name, vertices)
-        }).filter(function(node){
-            return node.distance == null
-        })
+    }).filter(node => {
+        return node.distance == null
+    })
 }
 
 function findNode (nodeName, vertices){
