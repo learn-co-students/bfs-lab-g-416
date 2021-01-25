@@ -10,7 +10,8 @@ function findAdjacent(nodeName,  vertices, edges){
     let adjacentNodes = adjacentNames.map(name => {
         return vertices.filter(vertex => vertex.name === name)[0]
     })
-    return adjacentNodes;
+    let finalNodes = adjacentNodes.filter(node => node.distance === null)
+    return finalNodes;
   }
 
 function markDistanceAndPredecessor() {
