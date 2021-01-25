@@ -10,7 +10,6 @@ function findAdjacent(nodeName,  vertices, edges){
     let adjacentNodes = adjacentNames.map(name => {
         return vertices.filter(vertex => vertex.name === name)[0]
     })
-    // .map(edge => edge.filter(el => el !== nodeName))
     return adjacentNodes;
   }
 
