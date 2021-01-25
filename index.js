@@ -14,8 +14,11 @@ function findAdjacent(nodeName,  vertices, edges){
     return finalNodes;
   }
 
-function markDistanceAndPredecessor() {
-
+function markDistanceAndPredecessor(node, adjacentNodes) {
+    adjacentNodes.forEach(el => {
+        el.predecessor = node;
+        el.distance = node.distance + 1
+    })
 }
 
 // function pseudocode() {
