@@ -1,5 +1,15 @@
 function bfs(rootNode, vertices, edges){
-
+    rootNode.distance = 0;
+    let discovered = [rootNode];
+    let orderedNodes = [rootNode];
+    while (discovered.length !== 0) {
+        let currentNode = discovered.shift();
+        let adjacentNodes = findAdjacent(currentNode.name, vertices, edges);
+        orderedNodes = orderedNodes.concat(adjacentNodes)
+        markDistanceAndPredecessor(currentNode, adjacentNodes);
+        discovered = discovered.concat(adjacentNodes);
+    }
+    return orderedNodes
 }
 
 function findAdjacent(nodeName,  vertices, edges){
