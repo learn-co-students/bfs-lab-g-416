@@ -1,20 +1,16 @@
 function bfs(rootNode, vertices, edges){
-	let queue = []
-	let array = []
 	rootNode.distance = 0
-	queue.push(rootNode)
-	array.push(rootNode)
-	while(!queue.length == 0) {
-		let firstNode = queue.shift()
+	let discovered = [rootNode]
+	let discoverOrder = [rootNode]
+	while(!discovered.length == 0) {
+		let firstNode = discovered.shift()
 		let adjacentVertices = findAdjacent(firstNode.name, vertices, edges)
+		discoverOrder = discoverOrder.concat(adjacentVertices)
 		markDistanceAndPredecessor(firstNode, adjacentVertices)
-    adjacentVertices.forEach(vertex => {
-			queue.push(vertex)
-			array.push(vertex)
-		})
+		discovered = discovered.concat(adjacentVertices)
 	}
 
-	return array
+	return discoverOrder
 }
 
 function findAdjacent(rootNode, vertices, edges) {
