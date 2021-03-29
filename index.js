@@ -11,23 +11,33 @@ let findAdjacent = (nodeName, vertices, edges) => {
     return adjacentNodes
 }
 
-function markDistanceAndPredecessor(node, adjacentNodes) {
-    for (let idx in adjacentNodes) {
-        if (node.distance === null) node.distance = 0;
-        adjacentNodes[idx].distance = node.distance + 1
-        adjacentNodes[idx].predecessor = node
-    }
-    return adjacentNodes
-}
+function markDistanceAndPredecessor(predecessor, adjacentNodes){
+    adjacentNodes.map(function(node){
+      node.distance = predecessor.distance + 1;
+      node.predecessor = predecessor;
+    })
+  }
 
-// function bfs(startingNode, vertices, edges){
-
-//     let adjacentNodes = findAdjacent(startingNode.name, vertices, edges)
-//     markDistanceAndPredecessor(startingNode, adjacentNodes)
-//     if (adjacentNodes.length !== 0) {
-//         for ( idx in adjacentNodes) {
-//             return bfs(adjacentNodes[idx], vertices, edges)
-//         }
+// function markDistanceAndPredecessor(node, adjacentNodes) {
+//     for (let idx in adjacentNodes) {
+//         if (node.distance === null) node.distance = 0;
+//         adjacentNodes[idx].distance = node.distance + 1
+//         adjacentNodes[idx].predecessor = node
 //     }
-//     return startingNode
+//     return adjacentNodes
 // }
+
+function bfs(startingNode, vertices, edges){
+    let visited = [startingNode]
+    let visitedOrder = [startingNode]
+    startingNode.distance = 0;
+
+    while ( visited.length !== 0) {
+        let currentNode = visited.shift()
+        let adjacentNodes = findAdjacent(currentNode.name, vertices, edges)
+        markDistanceAndPredecessor(currentNode, adjacentNodes)
+        visited = visited.concat(adjacentNodes)
+        visitedOrder = visitedOrder.concat(adjacentNodes)
+    }
+    return visitedOrder
+}
