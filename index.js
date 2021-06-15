@@ -32,6 +32,7 @@ function bfs(startingNode, vertices, edges){
 	
 //   return adjacentNodes.map(v => v.distance !== 0);
 // }
+
 // need to write a test for non-discovered nodes
 function findAdjacentNodes(nodeName,  vertices, edges){
   return edges.filter(function(edge){
